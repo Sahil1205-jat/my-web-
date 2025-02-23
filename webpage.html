@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choco11 Fantasy Cricket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header {
+            background-color: #ff1e1e;
+            color: white;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        input, select, button, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            background-color: #ff1e1e;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #d81b1b;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Choco11 Fantasy Cricket</div>
+    
+    <div class="container" id="match-selection">
+        <h3>Choose Match Type</h3>
+        <form>
+            <label>Select Match Type</label>
+            <select id="match-type" required>
+                <option value="t20">T20</option>
+                <option value="odi">One Day International</option>
+                <option value="test">Test Match</option>
+            </select>
+            <button type="button" onclick="nextStep(2)">Next</button>
+        </form>
+    </div>
+    
+    <div class="container hidden" id="team-selection">
+        <h3>Select Your Fantasy Cricket Team</h3>
+        <form id="fantasy-form">
+            <label>Choose a Team</label>
+            <select id="team-name" required>
+                <option value="india">India (Captain: Rohit Sharma) - Credits: 100</option>
+                <option value="australia">Australia (Captain: Pat Cummins) - Credits: 98</option>
+                <option value="england">England (Captain: Jos Buttler) - Credits: 97</option>
+                <option value="pakistan">Pakistan (Captain: Babar Azam) - Credits: 96</option>
+                <option value="south-africa">South Africa (Captain: Temba Bavuma) - Credits: 95</option>
+                <option value="new-zealand">New Zealand (Captain: Kane Williamson) - Credits: 94</option>
+            </select>
+            
+            <label>Choose Entry Fee</label>
+            <select id="entry-fee" required>
+                <option value="49">₹49 Entry</option>
+                <option value="200">₹200 Entry</option>
+                <option value="500">₹500 Entry</option>
+                <option value="1000">₹1000 Entry</option>
+            </select>
+            
+            <button type="submit">Confirm Team</button>
+        </form>
+    </div>
+
+    <div class="container hidden" id="payment-section">
+        <h3>Complete Payment</h3>
+        <p>Choose a payment method to proceed.</p>
+        <form id="payment-form">
+            <label>Payment Method</label>
+            <select id="payment-method" required>
+                <option value="upi">UPI</option>
+                <option value="credit-card">Credit Card</option>
+                <option value="debit-card">Debit Card</option>
+                <option value="net-banking">Net Banking</option>
+                <option value="wallet">Wallet</option>
+            </select>
+            <button type="button" onclick="processPayment()">Proceed to Pay</button>
+        </form>
+    </div>
+
+    <script>
+        function nextStep(step) {
+            if (step === 2) {
+                document.getElementById("match-selection").classList.add("hidden");
+                document.getElementById("team-selection").classList.remove("hidden");
+            }
+        }
+
+        document.getElementById("fantasy-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            document.getElementById("team-selection").classList.add("hidden");
+            document.getElementById("payment-section").classList.remove("hidden");
+        });
+
+        function processPayment() {
+            alert("Payment Successful! You are now entered into the contest.");
+        }
+    </script>
+</body>
+</html>
